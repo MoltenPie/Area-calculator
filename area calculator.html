@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Area calculator</title>
+  <style>
+	  #calculate {
+	border: 1px solid black;
+	cursor: pointer;
+	height: 20px;
+	width: 70px;
+	text-align: center;
+}
+#calculate:hover {
+	background-color: gray;
+	color: white;
+}
+#result {
+	border: 1px solid black;
+	height: 1250px;
+	width: 190px;
+}
+.values {
+	height: 300px;
+	width: 200px;
+}
+
+  </style>
+</head>
+<body>
+	<label for="Xvalues">Ts [°C] (entire column of X values)</label>
+	<textarea class="values" id="Xvalues" name="Xvalues"></textarea>
+	<label for="Yvalues">HF [mW*mg-1] (entire column of Y values)</label>
+	<textarea class="values" id="Yvalues" name="Yvalues"></textarea>
+	<div id="calculate">Calculate</div>	
+	<button onclick="fcopytoclipboard()" id="copytoclipboard">Copy result to clipboard</button>
+	<p id="result"></p>
+	
+</body>
+<script type="text/javascript">
+	let result = document.getElementById('result');
+	let calculate = document.getElementById('calculate');
+	
+
+function fcopytoclipboard() {
+	var copytoclipboard = document.getElementById('copytoclipboard');
+	navigator.clipboard.writeText(result.innerText);
+}
+
+	calculate.addEventListener('click', (e) => {
+		switch(e.target.innerText){
+			default:
+			var xs = document.getElementById('Xvalues').value.replace(/,/gi, '.');
+			var ys = document.getElementById('Yvalues').value.replace(/,/gi, '.');
+			const x = xs.split(/\r?\n/);
+			const y = ys.split(/\r?\n/);
+			start = x.findIndex(value => /^30/.test(value));
+			end = x.findIndex(value => /^40/.test(value));
+			
+			function CalculateArea() {
+			if (start === -1) {
+				return 0;
+			}
+			if (end === -1) {
+				return 0;
+			}
+			t = start;
+			k = 0;
+			do {
+				k = k + x[t] * y[t + 1]
+				t = t + 1;
+			 } while (t != end - 1);
+
+			k = k + x[end - 1] * 0;
+			k = k + x[end - 1] * 0;
+			k = k + x[start] * y[start];
+			k = k - x[0] * 0;
+			t = start;
+
+			do {
+				k = k - x[t + 1] * y[t];
+				t = t + 1;
+			 } while (t != end - 1);
+
+			 k = k - x[end - 1] * 0;
+			 k = k - x[end - 1] * y[end - 1];
+			 k = k * -1 / 2;
+			 return k
+			}
+
+			result.innerText = CalculateArea();
+
+			start = x.findIndex(value => /^40/.test(value));
+			end = x.findIndex(value => /^50/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^50/.test(value));
+			end = x.findIndex(value => /^60/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^60/.test(value));
+			end = x.findIndex(value => /^70/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^70/.test(value));
+			end = x.findIndex(value => /^80/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^80/.test(value));
+			end = x.findIndex(value => /^90/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^90/.test(value));
+			end = x.findIndex(value => /^100/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^100/.test(value));
+			end = x.findIndex(value => /^110/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^110/.test(value));
+			end = x.findIndex(value => /^120/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^120/.test(value));
+			end = x.findIndex(value => /^130/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^130/.test(value));
+			end = x.findIndex(value => /^140/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^140/.test(value));
+			end = x.findIndex(value => /^150/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^150/.test(value));
+			end = x.findIndex(value => /^160/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^160/.test(value));
+			end = x.findIndex(value => /^170/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^170/.test(value));
+			end = x.findIndex(value => /^180/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^180/.test(value));
+			end = x.findIndex(value => /^190/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^190/.test(value));
+			end = x.findIndex(value => /^200/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^200/.test(value));
+			end = x.findIndex(value => /^210/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^210/.test(value));
+			end = x.findIndex(value => /^220/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^220/.test(value));
+			end = x.findIndex(value => /^230/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^230/.test(value));
+			end = x.findIndex(value => /^240/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^240/.test(value));
+			end = x.findIndex(value => /^250/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^250/.test(value));
+			end = x.findIndex(value => /^260/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^260/.test(value));
+			end = x.findIndex(value => /^270/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^270/.test(value));
+			end = x.findIndex(value => /^280/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^280/.test(value));
+			end = x.findIndex(value => /^290/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^290/.test(value));
+			end = x.findIndex(value => /^300/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^300/.test(value));
+			end = x.findIndex(value => /^310/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^310/.test(value));
+			end = x.findIndex(value => /^320/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^320/.test(value));
+			end = x.findIndex(value => /^330/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^330/.test(value));
+			end = x.findIndex(value => /^340/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^340/.test(value));
+			end = x.findIndex(value => /^350/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^350/.test(value));
+			end = x.findIndex(value => /^360/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^360/.test(value));
+			end = x.findIndex(value => /^370/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^370/.test(value));
+			end = x.findIndex(value => /^380/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^380/.test(value));
+			end = x.findIndex(value => /^390/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^390/.test(value));
+			end = x.findIndex(value => /^400/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^400/.test(value));
+			end = x.findIndex(value => /^410/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^410/.test(value));
+			end = x.findIndex(value => /^420/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^420/.test(value));
+			end = x.findIndex(value => /^430/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^430/.test(value));
+			end = x.findIndex(value => /^440/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^440/.test(value));
+			end = x.findIndex(value => /^450/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^450/.test(value));
+			end = x.findIndex(value => /^460/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^460/.test(value));
+			end = x.findIndex(value => /^470/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^470/.test(value));
+			end = x.findIndex(value => /^480/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^480/.test(value));
+			end = x.findIndex(value => /^490/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^490/.test(value));
+			end = x.findIndex(value => /^500/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^500/.test(value));
+			end = x.findIndex(value => /^510/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^510/.test(value));
+			end = x.findIndex(value => /^520/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^520/.test(value));
+			end = x.findIndex(value => /^530/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^530/.test(value));
+			end = x.findIndex(value => /^540/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^540/.test(value));
+			end = x.findIndex(value => /^550/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^550/.test(value));
+			end = x.findIndex(value => /^560/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^560/.test(value));
+			end = x.findIndex(value => /^570/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^570/.test(value));
+			end = x.findIndex(value => /^580/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^580/.test(value));
+			end = x.findIndex(value => /^590/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^590/.test(value));
+			end = x.findIndex(value => /^600/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^600/.test(value));
+			end = x.findIndex(value => /^610/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^610/.test(value));
+			end = x.findIndex(value => /^620/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^620/.test(value));
+			end = x.findIndex(value => /^630/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			start = x.findIndex(value => /^630/.test(value));
+			end = x.findIndex(value => /^640/.test(value));
+			result.innerText += '\n' + CalculateArea();
+			
+			result.innerText = result.innerText.replace(/\./gi, ',');
+		}		
+	});	
+
+
+
+</script>
+</html>
